@@ -5,10 +5,7 @@
 ## Installation
 
 1. install [spuce](https://github.com/audiofilter/spuce)
-2. `mkdir build && cd build`
-3. `cmake .. && make`
-4. `ln -s $(pwd)/.. ~/torch/install/share/lua/5.1`
-5. `ln -s $(pwd)/liblgm.so ~/torch/install/lib/lua/5.1`
+2. `luarocks build https://raw.githubusercontent.com/unifyid/lgm/master/rocks/lgm-scm-1.rockspec`
 
 ## Example
 
