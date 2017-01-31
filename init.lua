@@ -7,6 +7,7 @@ void designIIR(void** filt, const char* iirType, const char* filtType, const int
     const double fc, const double rp, const double stopAttn, const double centerFreq);
 void filtfilt(void** filt, THDoubleTensor* in, THDoubleTensor* out);
 void undesignIIR(void** filt);
+void upsample(THDoubleTensor* in, double rate, THDoubleTensor* out, int order);
 ]]
 
 lgm.C = ffi.load(package.searchpath('liblgm', package.cpath))
@@ -44,6 +45,13 @@ end
 
 function lgm.destroyFilter(filt)
   lgm.C.undesignIIR(filt)
+end
+
+function lgm.upsample(vec, rate, order)
+  order = order or 2
+  local out = vec.new()
+  lgm.C.upsample(vec:cdata(), rate, out:cdata(), order)
+  return out
 end
 
 return lgm
